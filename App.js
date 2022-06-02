@@ -37,6 +37,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
+import { withSafeAreaInsets } from 'react-native-safe-area-context';
 
 
 
@@ -131,6 +132,7 @@ function United_Arab_Emirates ({navigation})  {
         showsHorizontalScrollIndicator={false}
         data={images}
         renderItem={ ({  item, index }) => (
+          <TouchableOpacity onPress={() => navigation.navigate('Case2', {param: index})}>
           <Image source={item}
           key={index}
 
@@ -143,6 +145,7 @@ function United_Arab_Emirates ({navigation})  {
             marginTop: 150,
           }}
           />
+          </TouchableOpacity>
         )}
         />
       </LinearGradient>
@@ -206,19 +209,107 @@ function South_Korea  ({navigation})  {
   }
 }; 
 
+function Case2 ({route}) {
+  const { param } = route.params;
+  const index = JSON.stringify(param);
+  switch (index){
+    case '0':
+      return UAE1(index);
+    case '1':
+      return UAE2(index);
+    case '2':
+      return UAE3(index);
+    case '3':
+      return UAE4(index);
+    case '4':
+      return UAE5(index);
+
+  }
+};
 
 
 function Picture1 ({route}) {
   
   return (
-    <Text>This is Picture1</Text>
+    <View style={{flex: 1, backgroundColor: '#000000'}}>
+      <ImageBackground source={require('./assets/Washington_DC/Houseofcongress.png')} style={{height: 500}}>
+        <View style={{backgroundColor: '#000000', height: 70, marginTop: 45 , marginHorizontal: 20, borderRadius: 20}}>
+          <Text style={{color: 'white',fontSize: 30, fontFamily: 'BebasNeue-Regular', textAlign: 'center', marginTop: 20}}>
+            United States House of Congress
+          </Text></View>
+        <View style={{ height: 500,backgroundColor: 'black', marginTop: 300, marginHorizontal: 27, borderRadius: 20}}>
+         <View style={{alignItems: 'center', marginTop: 20}}>
+           <Text style={{color: 'white', fontSize: 50, fontFamily: 'BebasNeue-Regular'}}>U.S. Congress</Text>
+
+         </View>
+
+            <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> TITLE 1</Text>
+              </View>
+                  
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> TITLE 2</Text>
+              </View>
+                  
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> TITLE 3</Text>
+              </View>
+            </View>
+
+            <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> sub area 1</Text>
+              </View>
+
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> sub area 1</Text>
+              </View>
+
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> sub area 1</Text>
+              </View>
+            </View>
+
+            <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> sub area 2</Text>
+              </View>
+
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> sub area 2</Text>
+              </View>
+
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> sub area 2</Text>
+              </View>
+            </View>
+
+            <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> sub area 3</Text>
+              </View>
+
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> sub area 3</Text>
+              </View>
+
+              <View style={{alignItems: 'center', marginTop: 20}}>
+                <Text style={{color:'white', fontSize: 13}}> sub area 3</Text>
+              </View>
+            </View>
+        </View>
+
+      </ImageBackground>
+
+    </View>
   );
 };
 
 function Picture2 ({route}) {
 
   return (
-   <Text>This is Picture 2</Text>
+   <Text style={{textAlign: 'center', marginTop: 350}}>This is Picture 2</Text>
   );
 };
 
@@ -239,6 +330,37 @@ function Picture5 ({route}) {
   )
 }
 
+function UAE1 ({route}) {
+  return (
+    <Text>This is UAE</Text>
+  )
+}
+
+function UAE2 ({route}) {
+  return (
+    <Text>This is UAE2</Text>
+  )
+}
+
+function UAE3 ({route}) {
+  return (
+    <Text>This is UAE3</Text>
+  )
+}
+
+function UAE4 ({route}) {
+  return (
+    <Text>This is UAE4</Text>
+  )
+}
+
+function UAE5 ({route}) {
+  return (
+    <Text>This is UAE5</Text>
+  )
+}
+
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -250,11 +372,17 @@ export default function App() {
         <Stack.Screen name ='United Arab Emirates' component={United_Arab_Emirates} />
         <Stack.Screen name='South Korea' component={South_Korea} />
         <Stack.Screen name= 'Case' component={Case}/>
+        <Stack.Screen name= 'Case2' component={Case2}/>
         <Stack.Screen name= 'Picture1' component={Picture1}/>
         <Stack.Screen name= 'Picture2' component={Picture2}/>
         <Stack.Screen name= 'Picture3' component={Picture3}/>
         <Stack.Screen name= 'Picture4' component={Picture4}/>
         <Stack.Screen name= 'Picture5' component={Picture5}/>
+        <Stack.Screen name= 'UAE1' component={UAE1}/>
+        <Stack.Screen name= 'UAE2' component={UAE2}/>
+        <Stack.Screen name= 'UAE3' component={UAE3}/>
+        <Stack.Screen name= 'UAE4' component={UAE4}/>
+        <Stack.Screen name= 'UAE5' component={UAE5}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
